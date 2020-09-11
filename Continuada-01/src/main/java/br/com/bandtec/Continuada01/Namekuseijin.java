@@ -17,4 +17,11 @@ public class Namekuseijin extends Personagem {
     public Double calcularPoder() {
         return getNivelDePoder() * regeneracao;
     }
+
+    @Override
+    public String toString() {
+        return "Namekuseijin{" +
+                "regeneracao=" + regeneracao +
+                "} " + super.toString();
+    }
 }

@@ -17,4 +17,11 @@ public class Sayajin extends Personagem {
     public Double calcularPoder() {
         return getNivelDePoder() * transformacao;
     }
+
+    @Override
+    public String toString() {
+        return "Sayajin{" +
+                "transformacao=" + transformacao +
+                "} " + super.toString();
+    }
 }

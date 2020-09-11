@@ -1,33 +1,51 @@
 package br.com.bandtec.Continuada01;
 
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-
+@RequestMapping("/personagens")
 public class PersonagemController {
+
+    //Personagens
 
     private List<Personagem> perso = new ArrayList<>();
 
-    public void addPoder(Personagem personagem) {
-        perso.add(personagem);
+
+    @GetMapping("/listarTodos")
+    public List<Personagem> getPersonagem() {
+        return perso;
     }
 
-    public void mostraPersonagens() {
-        System.out.println("Mostrando todos Personagens: ");
-        for (Personagem p : perso) {
-            System.out.println(p);
-        }
+    @DeleteMapping("/excluir/{id}")
+    public void excluirPerso(@PathVariable int id) {
+        perso.remove(id - 1);
     }
 
-    public void exibePoderMaiorQue8000Mil() {
-        System.out.println("É mais de 8 mil: ");
-        for (Personagem p : perso) {
-            if (p.calcularPoder() > 8000) {
-                System.out.println(p);
-            }
-        }
+    @GetMapping("/recuperar/{id}")
+    public Personagem getPerso(@PathVariable int id) {
+        return perso.get(id - 1);
     }
+
+    //Sayajin
+
+
+    @PostMapping("/cadastrarS")
+    public void cadastrarSayajin(@RequestBody Sayajin novoSayajin) {
+        perso.add(novoSayajin);
+    }
+
+
+    //Namekuseijin
+
+
+    @PostMapping("/cadastrarN")
+    public void cadastrarNamek(@RequestBody Namekuseijin novoNamek) {
+        perso.add(novoNamek);
+    }
+
 }
